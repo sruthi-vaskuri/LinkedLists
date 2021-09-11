@@ -1,0 +1,46 @@
+class Intersect
+{
+    //Function to find intersection point in Y shaped Linked Lists.
+    int getcount(Node temp){
+        int count=0;
+        Node head=temp;
+        while(head!=null){
+            count++;
+            head=head.next;
+        }
+        return count;
+    }
+    int intersect(int d,Node head1,Node head2){
+        Node a=head1;
+        Node b=head2;
+        int c=0;
+        while(c<d){
+            c++;
+            a=a.next;
+        }
+        while(a!=null && b!=null){
+            if(a==b){
+                return a.data;
+            }
+            a=a.next;
+            b=b.next;
+        }
+        return -1;
+    }
+	int intersectPoint(Node head1, Node head2)
+	{
+         // code here
+         if(head1==null || head2==null)
+             return 0;
+         int n1=getcount(head1);
+         int n2=getcount(head2);
+         if(n1>n2){
+             return intersect(n1-n2,head1,head2);
+         }else{
+             return intersect(n2-n1,head2,head1);
+         }
+	}
+}
+
+
+Link : https://practice.geeksforgeeks.org/problems/intersection-point-in-y-shapped-linked-lists/1
