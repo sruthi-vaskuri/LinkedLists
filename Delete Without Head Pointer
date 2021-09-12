@@ -1,0 +1,12 @@
+class GfG
+{
+    void deleteNode(Node node)
+    {
+         // Your code here
+         node.data=node.next.data;
+         node.next=node.next.next;
+    }
+}
+
+
+link : https://practice.geeksforgeeks.org/problems/delete-without-head-pointer/1/?company[]=Amazon&company[]=Amazon&page=1&category[]=Linked%20List&category[]=doubly-linked-list&query=company[]Amazonpage1company[]Amazoncategory[]Linked%20Listcategory[]doubly-linked-list
