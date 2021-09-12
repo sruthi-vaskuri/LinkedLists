@@ -1,0 +1,27 @@
+class Solution
+{
+    //Function to reverse a linked list.
+    Node reverse_head=null;
+    void reverse(Node head){
+        if(head.next==null){
+            reverse_head=head;
+            return;
+        }
+        reverse(head.next);
+        Node p=head.next;
+        p.next=head;
+        head.next=null;
+    }
+    Node reverseList(Node head)
+    {
+        // code here
+        if(head==null || head.next==null)
+           return head;
+        reverse(head);
+        return reverse_head;
+    }
+}
+
+
+
+Link : https://practice.geeksforgeeks.org/problems/reverse-a-linked-list/1
