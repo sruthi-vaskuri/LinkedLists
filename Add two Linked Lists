@@ -1,0 +1,68 @@
+class Solution{
+    //Function to add two numbers represented by linked list.
+    static Node addTwoLists(Node first, Node second){
+       
+        if(first==null && second==null){
+            return first;
+        }
+        else if(first==null && second!=null){
+            return second;
+        }
+        else if(first!=null && second==null){
+            return first;
+        }
+        else{
+        Node head1=reverse(first);
+        Node head2=reverse(second);
+        Node temp=new Node(0);
+        Node result=temp;
+        int carry=0;
+        while(head1!=null || head2!=null){
+            int sum=carry;
+            if(head1!=null)
+              sum+=head1.data;
+            if(head2!=null)
+              sum+=head2.data;
+            if(sum>9){
+                carry=1;
+            }
+            else{
+                carry=0;
+            }
+            sum=sum%10;
+            temp.next = new Node(sum);
+            temp=temp.next;
+            head1=(head1!=null)?head1.next:head1;
+            head2=(head2!=null)?head2.next:head2;
+        }
+        if(carry==1){
+            temp.next=new Node(carry);
+            temp=temp.next;
+        }
+      
+        Node add=reverse(result.next);
+        return add;
+        }
+    }
+    public static Node reverse(Node head){
+        Node prev=null;
+        Node curr=head;
+        Node next=null;
+        if(curr==null || curr.next==null){
+            return curr;
+        }
+        else{
+            while(curr!=null){
+                next=curr.next;
+                curr.next=prev;
+                prev=curr;
+                curr=next;
+            }
+            return prev;
+        }
+    }
+}
+
+
+
+link : https://practice.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1
