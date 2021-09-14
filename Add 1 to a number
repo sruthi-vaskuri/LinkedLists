@@ -1,0 +1,41 @@
+class Solution
+{
+    public static Node reverse(Node head){
+        Node prev=null;
+        Node next=null;
+        Node cur=head;
+        while(cur!=null){
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+        }
+        return prev;
+    }
+    public static Node addOne(Node head) 
+    { 
+        //code here.
+        Node cur=reverse(head);
+        Node c=cur;
+        int carry=1;
+        while(c!=null){
+            int sum=c.data+carry;
+            c.data=sum%10;
+            if(sum>9)
+               carry=1;
+            else
+               carry=0;
+            c=c.next;
+        }
+        if(carry==1){
+            Node c1=cur;
+            while(c1.next!=null)
+               c1=c1.next;
+            c1.next=new Node(carry);
+        }
+        return reverse(cur);
+    }
+}
+
+
+link : https://practice.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1
