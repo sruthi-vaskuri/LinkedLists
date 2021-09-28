@@ -1,0 +1,31 @@
+class LinkedList
+{
+    //Function to merge two sorted linked list.
+    Node sortedMerge(Node head1, Node head2) {
+     // This is a "method-only" submission. 
+     // You only need to complete this method
+     Node head=new Node(0);
+     Node root=head;
+     while(head1!=null && head2!=null){
+         if(head1.data<head2.data){
+             root.next=head1;
+             root=root.next;
+             head1=head1.next;
+         }
+         else{
+             root.next=head2;
+             root=root.next;
+             head2=head2.next;
+         }
+     }
+     if(head1!=null)
+        root.next=head1;
+     else
+        root.next=head2;
+     return head.next;
+   } 
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/merge-two-sorted-linked-lists/1
