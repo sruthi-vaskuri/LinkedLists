@@ -1,0 +1,30 @@
+class Sol
+{
+   
+   public static Node findIntersection(Node head1, Node head2)
+    {
+        // code here.
+        if(head1==null || head2==null)
+           return null;
+        HashSet<Integer> set=new HashSet<>();
+        Node cur=head1;
+        while(cur!=null){
+            set.add(cur.data);
+            cur=cur.next;
+        }
+        Node c=head2;
+        Node prev=new Node(0);
+        Node c1=prev;
+        while(c!=null){
+            if(set.contains(c.data)){
+               prev.next=new Node(c.data);
+               prev=prev.next;
+               set.remove(c.data);
+            }
+            c=c.next;
+        }
+        return c1.next;
+    }
+}
+
+LINK : https://practice.geeksforgeeks.org/problems/intersection-of-two-sorted-linked-lists/1
