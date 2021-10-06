@@ -1,0 +1,103 @@
+Data Structure implementing enqueue, dequeue, search and delete operations in O(1). I came up with a data structure HashMap<Integer,Node> and doubly Linked List.
+
+
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data){
+        this.data=data;
+        next=null;
+        prev=null;
+    }
+}
+class DataStructure{
+    HashMap<Integer,Node> map;
+    Node head,cur;
+    DataStructure(){
+        map=new HashMap<Integer,Node>();
+        head=null;
+        cur=null;
+    }
+    void enqueue(int data){
+        Node newnode=new Node(data);
+        if(head==null){
+            head=newnode;
+            cur=head;
+        }else{
+            cur.next=newnode;
+            newnode.prev=cur;
+            cur=cur.next;
+        }
+        map.put(data,newnode);
+    }
+    int dequeue(){
+        if(head!=null){
+            int value=head.data;
+            head=head.next;
+            if(head!=null)
+               head.prev=null;
+            map.remove(value);
+            return value;
+        }
+        return -1;
+    }
+    void delete(int data){
+        Node delete_node=map.get(data);
+        if(delete_node.prev!=null){
+            Node previous=delete_node.prev;
+            previous.next=delete_node.next;
+            if(previous.next!=null){
+                previous.next.prev=previous;
+            }else{
+                cur=previous;
+            }
+        }else{
+            head=delete_node.next;
+        }
+        map.remove(data);
+    }
+    boolean search(int data){
+        if(map.containsKey(data))
+           return true;
+        return false;
+    }
+    void print(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+}
+class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        DataStructure ds=new DataStructure();
+        int t=sc.nextInt();
+        sc.nextLine();
+        for(int i=0;i<t;i++){
+            String s=sc.nextLine();
+            if(s.equals("search")){
+                int n=sc.nextInt();
+                System.out.println(ds.search(n));
+                sc.nextLine();
+            }
+            else if(s.equals("enqueue")){
+                int n=sc.nextInt();
+                ds.enqueue(n);
+                sc.nextLine();
+            }else if(s.equals("dequeue")){
+                System.out.println(ds.dequeue());
+            }else if(s.equals("print")){
+                ds.print();
+            }
+            else{
+                int n=sc.nextInt();
+                ds.delete(n);
+                sc.nextLine();
+            }
+        }
+    }
+}
