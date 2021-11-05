@@ -1,0 +1,31 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        int c=0;
+        ListNode prev=null,next=null;
+        ListNode cur=head;
+        int count=0;
+        while(count<k && cur!=null){
+            count++;
+            cur=cur.next;
+        }
+        if(count!=k)
+             return head;
+        cur=head;
+        while(c<k && cur!=null){
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+            c++;
+        }
+        if(cur!=null){
+          head.next=reverseKGroup(cur,k);
+        }
+        return prev;
+    }
+}
+
+
+
+
+LINK : https://leetcode.com/problems/reverse-nodes-in-k-group/submissions/
